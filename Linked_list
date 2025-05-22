@@ -1,0 +1,162 @@
+package mypackage;
+public class Node {
+	int data;
+	Node next;
+	//alt shift S
+	//default constructor
+	public Node() {
+	}
+	//parameterized constructor
+	public Node(int data, Node next) {
+		this.data = data;
+		this.next = next;
+	}
+	
+	
+}
+
+
+package mypackage;
+public class LinearList {
+    Node Head=null;
+    public void insertAtEnd(int d) {
+    	Node nn=new Node(d,null);
+    	if(Head==null) {
+    		Head=nn;
+    	}else {
+    		Node temp=Head;
+    		while(temp.next!=null) {
+    			temp=temp.next;
+    		}
+    		temp.next=nn;
+    	}
+    	System.out.println("inserted at last");
+    }
+   public void insertAtBeg(int d) {
+	   Node nn=new Node(d,null);
+	   nn.next=Head;
+	   Head=nn;
+	  System.out.println("inserted at beginning"); 
+   }
+   public void insertAtPos(int d, int p) { 
+	   Node temp=Head;
+	   Node nn=new Node(d,null);
+	   if(Head==null && p>1) {
+		   System.out.println("Not possible");
+	   } else {
+		   if(p==1) {
+			   insertAtBeg(d);
+		   }else {
+			   int i=1;
+			   while(i!=p-1) {
+				   temp=temp.next;
+			   }
+			   nn.next=temp.next;
+			   temp.next=nn;
+			   System.out.println("Inserted at pos");
+		   }
+		   
+	   }
+   }
+   public int deleteFromBeg()
+   {
+      if(Head==null)
+      {
+          System.out.println("Empty linked list");
+          return -1;
+      }
+      else
+      {
+          Node temp=Head;
+          Head=temp.next;
+          return temp.data;
+      }
+   }  
+ public int deleteFromEnd() {
+	 Node cp=Head,pp=Head;
+	 if(Head==null)
+	    {
+	        System.out.println("Empty linked list");
+	        return -1;
+	    }else {
+	    	if(cp.next==null) {
+	    		Head=null;
+	    		return cp.data;
+	    	}else {
+	    		while (cp.next!=null) {
+	    			pp=cp;
+	    			cp=cp.next;
+	    		}
+	    		pp.next=null;
+	    		return pp.data;
+	    	}
+	    }
+ }
+   
+   
+  public void traverse() {  
+	 if(Head==null) {
+		 System.out.println("Empty");
+	 }else {
+		 Node temp=Head;
+		 while(temp!=null) {
+			 System.out.print(temp.data+"->");
+			 temp=temp.next;
+		 }
+	 }
+ } 
+   
+   
+}
+
+
+
+
+
+
+
+-----------------------------------------------
+package mypackage;
+
+import java.util.Scanner;
+
+public class TestLinearListOperation {
+	public static void main(String[] args) {
+        LinearList ob=new LinearList();
+        int choice=0;
+        Scanner scanner=new Scanner(System.in);
+        int data=0;
+        int pos,bNodeData,aNodeData;
+        while(choice<8)
+        {
+            System.out.println("1.Traverse 2.Insert-End 3.Insert-Beg 4.Insert-pos 5.Delete-Beg 6.Delete-End 7.Exit ");
+            choice=scanner.nextInt();
+            switch(choice)
+            {
+                case 1:ob.traverse();break;
+                case 2:System.out.println("Data:");
+                        data=scanner.nextInt();
+                        ob.insertAtEnd(data);
+                        break;
+                case 3:System.out.println("Data:");
+                        data=scanner.nextInt();
+                        ob.insertAtBeg(data);
+                        break;
+                case 4:System.out.println("Pos:");
+                        pos=scanner.nextInt();
+                        System.out.println("Data:");
+                        data=scanner.nextInt();
+                        ob.insertAtPos(data,pos);
+                        break;
+                               
+                case 5:System.out.println("Deleted node:"+ob.deleteFromBeg());
+                        break;
+                case 6:System.out.println("Deleted node:"+ob.deleteFromEnd());
+                        break;
+                case 7: System.out.println("Exited");
+                        break;
+                        
+            }
+        }
+    }
+}
