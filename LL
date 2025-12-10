@@ -1,0 +1,1 @@
+This Repo contains Linkedlist code done in lab practical at uni
